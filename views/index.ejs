@@ -7,13 +7,14 @@
 </head>
 <body>
 <h1>ALL BOOKS</h1>
-<ul>
+<ol type="1">
     <% for (let book of books){ %>
-    <li><a href="/books/<%=book._id%>"><%=book.title%></a></li>
+    <li><a href="/<%=userData.username%>/books/<%=book._id%>"><%=book.title%></a></li>
     <% } %>
-</ul>
-<a href="/books/new">ADD BOOK</a>
-<a href="/user/signup">Sign-up</a>
+</ol>
+<a href="/<%=userData.username%>/new">ADD BOOK</a>
+<a href="/home">Sign-out</a>
+
 
 </body>
 </html>

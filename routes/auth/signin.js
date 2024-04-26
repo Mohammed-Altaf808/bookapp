@@ -1,14 +1,14 @@
 const express = require('express')
 const router = express.Router()
-const user = require('../../models/user')
+const User = require('../../models/user')
 
 
-router.get('/signin' , (req , res)=>{
+router.get('/' , (req , res)=>{
     res.render("signin")
   })
 
-router.post('/signin' ,async (req , res)=>{
-    const { email , password} = req.body
+router.post('/' ,async (req , res, next)=>{
+    const { email , password } = req.body
     try{
     if(!email || !password){
         const error = new Error("credentials are incorrect")
@@ -16,30 +16,37 @@ router.post('/signin' ,async (req , res)=>{
         return next(error)
     }
 
-    const emailid = await user.findOne({ email })
-    if(!emailid){
+    const findUser = await User.findOne({ email })
+    if(!findUser){
         const error = new Error("credentials are incorrect")
         error.status = 400;
         return next(error);
     }
 
-    const pwd = user.password === password;
+    const pwd = findUser.password === password;
     if(!pwd){
         const error = new Error("wrong credential");
         error.status = 400;
         return next(error);
     }
-    // res.redirect("/user/signin")
-        res.status(200).json({ message : "log in "})
+    res.redirect(`/auth/signin/${findUser.username}`)
+    // res.redirect('/books')
 }catch(error){
         res.send(error)
     }   
 })
 
-// router.get('/user/:username',async (res , req)=>{
-//     const { username } = req.params;
-//     const userData =await user.findOne({ username })
-//     res.render('user' , { userData })
-// })
+router.get('/:username', async ( req,res)=>{
+    try{
+    const { username } = req.params;
+    const userData =await User.findOne({ username })
+    if (!userData) {
+        res.status(404).json({message : "not found"})
+    }
+    res.render('user' , { userData })
+    }catch(error){
+        res.send(error)
+    }
+})
 
-module.exports = router
+module.exports = router;
