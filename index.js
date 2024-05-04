@@ -41,22 +41,14 @@ app.get("/:username/books", async (req, res) => {
   try {
     const { username } = req.params;
     const userData = await User.findOne({username})
-    // Find the user data based on the username
-
     if (!userData) {
       return res.status(404).send("User not found");
     }
-    
-    // Find all books belonging to the user
     const books = await book.find({ userID: userData._id });
-    
-    // If there are no books belonging to the user, send an error response
     if (books.length === 0) {
       res.redirect(`/${userData.username}/new`)
     }
-    
-    // If there are books, send them as a response
-    // res.send(books);
+
     res.render('index' , {books , userData})
   } catch (error) {
     console.error(error);
@@ -67,7 +59,7 @@ app.get("/:username/books", async (req, res) => {
 app.get('/:username/new',async (req , res)=>{
   const { username } = req.params;
   const userData = await User.findOne({username})
- res.render('new' , { userData })
+  res.render('new' , { userData })
 })
 
 app.post('/:username/books', async(req , res)=>{
@@ -92,7 +84,6 @@ app.get("/:username/books/:id" , async(req , res)=>{
   if (!books) {
     res.status(404).json({message : "books not found"})
   }
-  // res.send(books)
   res.render('show' ,{books , userData})
 }
 catch(error){
@@ -108,6 +99,36 @@ app.delete('/:username/books/:id',async(req , res)=>{
   const books = await book.findByIdAndDelete(id)
   res.redirect(`/${userData.username}/books`)
 })
+
+app.get('/:username/books/:id/edit',async (req , res)=>{
+  try{
+    const { username } = req.params;
+    const userData = await User.findOne({username})
+    const {id} =req.params;
+  const books = await book.findById(id);
+  if (!books) {
+    res.status(400).json( {message : "book not found"})
+  }
+  res.render('edit', {books , userData})
+}catch(error){
+  res.send(error)
+}
+});
+
+app.put('/:username/books/:id', async (req , res)=>{
+  try{
+    const { username } = req.params;
+    const userData = await User.findOne({username})
+   const {id} = req.params;
+   const books= await book.findByIdAndUpdate(id , req.body, {runValidators : true, new:true})
+   if(!books){
+     res.status(404).json({message : "book not found"})
+   }
+   res.redirect(`/${userData.username}/books/${books._id}`);
+ }catch(error){
+   res.send(error)
+ }
+ })
 
 app.get('/home',(req , res)=>{
   console.log("home page")

@@ -1,36 +1,37 @@
 const express = require('express')
 const router = express.Router()
 const User = require('../../models/user')
+const bcrypt = require("bcrypt")
 
 
-router.get('/' , (req , res)=>{
-    res.render("signin")
-  })
+
+router.get('/', (req, res) => {
+    res.render("signin", { error: null }); 
+});
 
 router.post('/' ,async (req , res, next)=>{
-    const { email , password } = req.body
     try{
+    const { email , password } = req.body
     if(!email || !password){
         const error = new Error("credentials are incorrect")
         error.status = 400;
-        return next(error)
+        return res.render("signin", { error: "Credentials are incorrect" });
     }
-
+    
     const findUser = await User.findOne({ email })
     if(!findUser){
         const error = new Error("credentials are incorrect")
         error.status = 400;
-        return next(error);
+        return res.render("signin", { error: "Credentials are incorrect" });
+    }
+    const validpasword =await bcrypt.compare(password , findUser.password )
+    if(!validpasword){
+        const error = new Error("Wrong credential");
+        error.status = 400;
+        return res.render("signin", { error: "Wrong credential" });
     }
 
-    const pwd = findUser.password === password;
-    if(!pwd){
-        const error = new Error("wrong credential");
-        error.status = 400;
-        return next(error);
-    }
     res.redirect(`/auth/signin/${findUser.username}`)
-    // res.redirect('/books')
 }catch(error){
         res.send(error)
     }   
@@ -43,7 +44,7 @@ router.get('/:username', async ( req,res)=>{
     if (!userData) {
         res.status(404).json({message : "not found"})
     }
-    res.render('user' , { userData })
+    res.render('user' , { userData } )
     }catch(error){
         res.send(error)
     }

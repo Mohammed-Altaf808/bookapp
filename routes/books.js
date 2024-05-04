@@ -3,85 +3,51 @@ const router = express.Router()
 const book = require("../models/book")
 const User = require("../models/user")
 
-// router.get('/' , async(req ,res)=>{
-//   try{
-//     const books = await book.find({})
-//     if (!books) {
-//       res.status(404).json({message : "books not found"})
-//     }
-//     res.render('index',{ books })
-//   }
-//   catch(error){
-//     res.send(error)
-//   }
-//   })
+router.get('/new', (req, res) => {
+  res.render('new')
+})
 
-
-  
-  router.get('/new',(req , res)=>{
-    res.render('new')
-  })
-  
-  // router.get('/:id', async(req , res)=>{
-  //   try{
-  //     const {id} = req.params
-  //     const books = await book.findById(id)
-  //     if (!books) {
-  //       res.status(404).json({message : "books not found"})
-  //     }
-  //     // res.send(books)
-  //     res.render('show' ,{books})
-  //   }
-  //   catch(error){
-  //     res.send(error)
-  //   }
-  // })
-  
-  router.post('/', async(req , res)=>{
-    try{
-      const books = new book(req.body)
-      await books.save()
-      res.redirect(`/books/${books._id}`)
-    }
-    catch(error){
+router.post('/', async (req, res) => {
+  try {
+    const books = new book(req.body)
+    await books.save()
+    res.redirect(`/books/${books._id}`)
+  }
+  catch (error) {
     res.send(error)
-   }
-  })
-  
-  router.get('/:id/edit',async (req , res)=>{
-    try{
-      const {id} =req.params;
+  }
+})
+
+router.get('/:id/edit', async (req, res) => {
+  try {
+    const { id } = req.params;
     const books = await book.findById(id);
     if (!books) {
-      res.status(400).json( {message : "book not found"})
+      res.status(400).json({ message: "book not found" })
     }
-    res.render('edit', {books})
-  }catch(error){
+    res.render('edit', { books })
+  } catch (error) {
     res.send(error)
   }
-  })
-  
-  router.put('/:id', async (req , res)=>{
-   try{
-    const {id} = req.params;
-    const books= await book.findByIdAndUpdate(id , req.body, {runValidators : true, new:true})
-    if(!books){
-      res.status(404).json({message : "book not found"})
+})
+
+router.put('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const books = await book.findByIdAndUpdate(id, req.body, { runValidators: true, new: true })
+    if (!books) {
+      res.status(404).json({ message: "book not found" })
     }
     res.redirect(`/books/${books._id}`);
-  }catch(error){
+  } catch (error) {
     res.send(error)
   }
-  })
-  
-  router.delete('/:id',async(req , res)=>{
-    const {id} = req.params;
-    const books = await book.findByIdAndDelete(id)
-    res.redirect('/books')
-  })
+})
 
- 
+router.delete('/:id', async (req, res) => {
+  const { id } = req.params;
+  const books = await book.findByIdAndDelete(id)
+  res.redirect('/books')
+})
 
-
-  
 module.exports = router
