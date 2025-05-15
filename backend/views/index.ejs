@@ -1,0 +1,242 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home page</title>
+
+<style>
+
+body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+            background-image: url("https://as1.ftcdn.net/v2/jpg/06/50/58/74/1000_F_650587488_x0CidHezOrliOZOiwYDxxwGH7ZZMTX1B.jpg");
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        ol {
+            list-style-type: decimal;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        a:hover {
+            color: #0056b3;
+        }
+</style>
+
+</head>
+<body>
+<h1>ALL BOOKS</h1>
+<ol type="1">
+    <% for (let book of books){ %>
+    <li><a href="/<%=userData.username%>/books/<%=book._id%>"><%=book.title%></a></li>
+    <% } %>
+</ol>
+<a href="/<%=userData.username%>/new">ADD BOOK</a>
+<a href="/home">Sign-out</a>
+
+
+</body>
+</html> -->
+
+
+
+
+<!-- 
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url("https://as1.ftcdn.net/v2/jpg/06/50/58/74/1000_F_650587488_x0CidHezOrliOZOiwYDxxwGH7ZZMTX1B.jpg");
+            background-size: cover;
+            background-position: center;
+            color: #333;
+            margin-top: 70px;
+        }
+
+        .container {
+            max-width: 460px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #333;
+        }
+
+        ol {
+            list-style-type: decimal;
+            padding-left: 20px;
+            color: #333;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+            display: block;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        a:hover {
+            color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ALL BOOKS</h1>
+        <ol>
+            <% for (let book of books){ %>
+            <li><a href="/<%=userData.username%>/books/<%=book._id%>"><%=book.title%></a></li>
+                <% } %>
+            </ol>
+            <a href="/
+
+            <%=userData.username%>/new">ADD BOOK</a>
+            <a href="/home">Sign-out</a>
+        </div>
+    </body>
+    </html>
+     -->
+
+
+
+
+     <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url("https://as1.ftcdn.net/v2/jpg/06/50/58/74/1000_F_650587488_x0CidHezOrliOZOiwYDxxwGH7ZZMTX1B.jpg");
+            background-size: cover;
+            background-position: center;
+            color: #333;
+            margin-top: 70px;
+        }
+
+        .container {
+            max-width: 460px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #333;
+        }
+
+        ol {
+            list-style-type: decimal;
+            padding-left: 20px;
+            color: #333;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+            display: block;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        a:hover {
+            color: #0056b3;
+        }
+
+        .sign-out {
+            display: block;
+            text-align: center;
+            color: white;
+            margin-top: 20px;
+        }
+
+        .sign-out button {
+            padding: 10px 20px;
+            color: rgb(255, 255, 255);
+            border: 2px solid rgb(255, 255, 255); /* Black border */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer; /* Show pointer cursor on hover */
+            transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Smooth transition effect */
+        }
+        .button{
+            color: white;
+        }
+        .a{
+            color: black;
+        }
+
+        .sign-out button:hover {
+            background-color: rgb(193, 185, 185); /* Black background on hover */
+            color: white; /* White text on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>ALL BOOKS</h1>
+        <ol>
+            <% for (let book of books){ %>
+            <li><a href="/<%=userData.username%>/books/<%=book._id%>"><%=book.title%></a></li>
+                <% } %>
+            </ol>
+            <a href="/<%=userData.username%>/new">ADD BOOK</a>
+        </div>
+        <div class="sign-out">
+            <button class="button" >
+                 <a class="a" href="/home" value="Click Me" style="float: right;">Sign-out </a>
+                </button>
+        </div>
+    </body>
+    </html>
+        

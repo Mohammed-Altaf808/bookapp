@@ -1,0 +1,184 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= books.title %></title>
+</head>
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5; /* Light gray background color */
+            background-image: url(https://as1.ftcdn.net/v2/jpg/06/50/58/74/1000_F_650587488_x0CidHezOrliOZOiwYDxxwGH7ZZMTX1B.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+            color: #c0be32; /* Dark gray text color */
+        }
+
+        ul {
+            list-style-type: none; /* Remove bullet points */
+            padding: 0;
+            margin: 20px;
+        }
+
+        li {
+            margin-bottom: 10px; /* Spacing between list items */
+        }
+
+        a {
+            display: block; /* Display as block element for full width */
+            text-align: center;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #c0be32; /* Blue background color */
+            color: #fff; /* White text color */
+            text-decoration: none; /* Remove underline */
+            border-radius: 5px; /* Rounded corners */
+            transition: background-color 0.3s; /* Smooth transition effect */
+            width: 200px; /* Fixed width */
+        }
+
+        a:hover {
+            background-color: #ecfc0e; /* Darker blue on hover */
+        }
+
+        form {
+            text-align: center;
+        }
+        .content{
+            color: white;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #dc3545; /* Red background color */
+            color: #fff; /* White text color */
+            border: none; /* Remove default border */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer; /* Show pointer cursor on hover */
+            transition: background-color 0.3s; /* Smooth transition effect */
+        }
+
+        button:hover {
+            background-color: #c82333; /* Darker red on hover */
+        }
+    </style>
+
+<body>
+    <h1><%= books.title %></h1>
+    <ul class="content">
+        <li><%= books.author %></li>
+        <li><%= books.genre %></li>
+        <li><%= books.description %></li>
+    </ul>
+    <a href="/<%=userData.username%>/books/">ALL BOOKS</a>
+    <a href="/<%=userData.username%>/books/<%=books._id%>/edit">EDIT BOOK</a>
+   <form action="/<%=userData.username%>/books/<%=books._id%>?_method=DELETE" method="POST" >
+    <button>DELETE</button>
+   </form>
+
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= books.title %></title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ad7777c7; /* Light gray background color */
+            background-image: url(https://as1.ftcdn.net/v2/jpg/06/50/58/74/1000_F_650587488_x0CidHezOrliOZOiwYDxxwGH7ZZMTX1B.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: rgba(235, 203, 203, 0.8); /* White background with transparency */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Shadow effect */
+            text-align: center; /* Center align text */
+            color: #333; /* Dark gray text color */
+        }
+
+        h1 {
+            color: #000000; /* Dark gray text color */
+        }
+
+        ul {
+            list-style-type: none; /* Remove bullet points */
+            padding: 0;
+            margin: 20px;
+        }
+
+        li {
+            margin-bottom: 10px; /* Spacing between list items */
+        }
+
+        a {
+            display: block; /* Display as block element for full width */
+            text-align: center;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #a8a62b8d; /* Blue background color */
+            color: #fff; /* White text color */
+            text-decoration: none; /* Remove underline */
+            border-radius: 5px; /* Rounded corners */
+            transition: background-color 0.3s; /* Smooth transition effect */
+            width: 200px; /* Fixed width */
+        }
+
+        a:hover {
+            background-color: #ecfc0e6c; /* Darker blue on hover */
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #dc3545; /* Red background color */
+            color: #fff; /* White text color */
+            border: none; /* Remove default border */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer; /* Show pointer cursor on hover */
+            transition: background-color 0.3s; /* Smooth transition effect */
+        }
+
+        button:hover {
+            background-color: #c82333; /* Darker red on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1><% books.title%></h1>
+        <ul>
+            <li>Author : <%= books.author %></li>
+            <li>Genre : <%= books.genre %></li>
+            <li>Description : <%= books.description %></li>
+            <img src="data:<%= books.image.contentType %>;base64,<%= books.image.data.toString('base64') %>" alt="Book Image" width="200">
+
+            <!-- <li>Image : <img src="<%= books.image %>" alt="Book Image" style="max-width: 200px; max-height: 200px;"></li> -->
+        </ul>
+        <a href="/<%=userData.username%>/books/">ALL BOOKS</a>
+        <a href="/<%=userData.username%>/books/<%=books._id%>/edit">EDIT BOOK</a>
+        <form action="/<%=userData.username%>/books/<%=books._id%>?_method=DELETE" method="POST">
+            <button>DELETE</button>
+            <a href="/home">Signout</a>
+        </form>
+    </div>
+</body>
+</html>

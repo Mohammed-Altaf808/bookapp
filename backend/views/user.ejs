@@ -1,0 +1,59 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= userData.username %></title>
+</head>
+<body>
+    <h1>Welcome , <%= userData.username %></h1>
+    <h1>To view books</h1>
+    <a href="/<%= userData.username%>/books">click here</a>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= userData.username %></title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url("https://as1.ftcdn.net/v2/jpg/06/50/58/74/1000_F_650587488_x0CidHezOrliOZOiwYDxxwGH7ZZMTX1B.jpg");
+            background-size: cover;
+            background-position: center;
+            color: #333;
+            text-align: center;
+            padding-top: 100px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #fff; /* White text color */
+        }
+
+        a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff; /* Blue background color */
+            color: #fff; /* White text color */
+            text-decoration: none; /* Remove underline */
+            border-radius: 5px; /* Rounded corners */
+            transition: background-color 0.3s; /* Smooth transition effect */
+        }
+
+        a:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome, <%= userData.username %></h1>
+    <h1>To view books</h1>
+    <a href="/<%= userData.username%>/books">click here</a>
+</body>
+</html>

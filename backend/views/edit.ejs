@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Book</title>
+</head>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2;
+    /* Light gray background color */
+    background-image: url(https://as1.ftcdn.net/v2/jpg/06/50/58/74/1000_F_650587488_x0CidHezOrliOZOiwYDxxwGH7ZZMTX1B.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  div {
+    border-radius: 5px;
+    background-color: #fff;
+    /* White background color */
+    padding: 20px;
+    margin: 50px auto;
+    /* Center the div horizontally */
+    width: 400px;
+    /* Fixed width for the form container */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* Soft shadow effect */
+  }
+
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+    /* Dark gray text color */
+  }
+
+  label {
+    font-weight: bold;
+  }
+
+  input[type="text"],
+  input[type="submit"] {
+    width: calc(100% - 40px);
+    /* Calculate width minus padding */
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    /* Light gray border */
+    border-radius: 4px;
+    box-sizing: border-box;
+    /* Include padding and border in element's total width */
+  }
+
+  input[type="submit"] {
+    background-color: #4CAF50;
+    /* Green submit button color */
+    color: white;
+    cursor: pointer;
+  }
+
+  input[type="submit"]:hover {
+    background-color: #45a049;
+    /* Darker green on hover */
+  }
+
+  button[type="button"] {
+    width: 100%;
+    background-color: #ccc;
+    /* Light gray button color */
+    padding: 10px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  button[type="button"]:hover {
+    background-color: #bbb;
+    /* Darker gray on hover */
+  }
+
+  a {
+    display: block;
+    /* Display as block element for full width */
+    text-align: center;
+    text-decoration: none;
+    color: #333;
+    /* Dark gray text color */
+    margin-top: 20px;
+  }
+
+  a:hover {
+    color: #007bff;
+    /* Blue on hover */
+  }
+</style>
+
+<body>
+  <div>
+    <h1>Add A Book</h1>
+    <form action="/<%=userData.username%>/books/<%=books._id%>?_method=PUT" method="post">
+      <label for="title">Title: </label>
+      <input type="text" id="title" name="title" placeholder="Title of the book" value="<%=books.title%>" required>
+
+      <label for="author">Author: </label>
+      <input type="text" id="author" name="author" placeholder="Author of the book" value="<%=books.author%>" required>
+
+      <label for="genre">Genre: </label>
+      <input type="text" id="genre" name="genre" placeholder="Genre of the book" value="<%=books.genre%>" required>
+
+      <label for="description">Description: </label>
+      <input type="text" id="description" name="description" placeholder="Description" value="<%=books.description%>" required>
+
+      <form action="/upload" method="post" enctype="multipart/form-data">upload img
+        <input type="file" id="fileUpload" name="fileUpload" accept="image/*, .pdf, .docx" value>
+      </form>
+      <img src="<%=books.img%>" alt="Book Image">
+
+      <button type="submit">Edit Book</button>
+    </form>
+    <button><a href="/<%=userData.username%>/books/<%=books._id%>">Cancel</a></button>
+  </div>
+</body>
+
+</html>
