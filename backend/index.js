@@ -167,7 +167,7 @@ app.put('/:username/books/:id', async (req , res)=>{
  }
  })
 
-app.get('/home',(req , res)=>{
+app.get('/',(req , res)=>{
   console.log("home page")
   res.render('home')
 })
