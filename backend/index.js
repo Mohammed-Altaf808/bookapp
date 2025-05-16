@@ -17,7 +17,7 @@ dotenv.config()
 
 const methodOverride =require('method-override')
 
-mongoose.connect('mongodb://localhost:27017/bookapp')
+mongoose.connect(process.env.MONGO_URI )
 .then(() => {
 console.log("MONGO CONNECTION OPEN!!!")
 })
@@ -172,7 +172,7 @@ app.get('/home',(req , res)=>{
   res.render('home')
 })
 
-app.listen(3000 ,()=>{
+app.listen(process.env.PORT ,()=>{
   console.log('port 3000 is live')
 })
 
