@@ -17,7 +17,7 @@ dotenv.config()
 
 const methodOverride =require('method-override')
 
-mongoose.connect(process.env.MONGO_URI )
+mongoose.connect(process.env.MONGO_URL)
 .then(() => {
 console.log("MONGO CONNECTION OPEN!!!")
 })
