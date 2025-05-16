@@ -17,7 +17,7 @@ dotenv.config()
 
 const methodOverride =require('method-override')
 
-mongoose.connect( process.env.MONGO_URL, {
+mongoose.connect( 'mongodb://mongo:jyABHLrRzsGsRaXdGfEghKFxFLIkCpIa@mongodb.railway.internal:27017', {
   useNewUrlParser: true,
   useUnifiedTopology: true,})
 .then(() => {
